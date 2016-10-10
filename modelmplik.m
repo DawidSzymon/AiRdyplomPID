@@ -6,7 +6,7 @@ b = 0.1;
 K = 0.01;
 R = 1;
 L = 0.5;
-%%
+%%MODEL SILNIKA DC 
 s=tf('s');
 P_motor = K/((J*s+b)*(L*s+R)+K^2);
 C= pid(Nastawy(1), Nastawy(2), Nastawy(3));
@@ -15,6 +15,7 @@ sys_c1=feedback(C * P_motor,1);
 % grid
 [y,t] = step(sys_c1);
 zadana = ones(length(t),1);
+%%KRYTERIUM JAKOŒCI WZGLÊDEM UCHYBU
 uchyb = zadana-y;
 E = sum(uchyb);
 
