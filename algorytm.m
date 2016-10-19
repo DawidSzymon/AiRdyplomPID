@@ -1,20 +1,23 @@
 clear
 clc
-%%OGRANICZENIA
+%%
+%OGRANICZENIA
 A = [1 0 0; 0 1 0; 0 0 1];
-b = [0;0;0];
+b = [200;300;100];
 tic
 model = 'PIDsimulink';
 load_system(model);
-%%Algorytm GENETYCZNY
+%%
+%Algorytm GENETYCZNY
 % GENERATIONS - liczba generacji
 % DISPLAY - œledzenie pracy algorytmu genetycznego
 % POPULATIONSIZE - liczba populacji 
-% CROSSOVERFRACTION - metoda krzy¿owa (domyœlnie ustawiano jest na 80%)
-options = gaoptimset('Generations',2000,'Display','iter','PopulationSize',600,'CrossoverFraction',0.8);
-output = ga(@funkcja,3,[],[],[],[],[],[],[],options);
+% CROSSOVERFRACTION - metoda krzy¿owa
+%mypop = populacja pocz¹tkowa 
+mypop = [ 1:1:100; 1:1:100; 1:1:100]';
+%x0=[1:1:10; 11:1:20; 21:1:30; 31:1:40; 41:1:50; 51:1:60; 61:1:70; 71:1:80; 81:1:90; 91:1:100];
+options = gaoptimset('Generations',300,'Display','iter','CrossoverFraction',0.8,'InitialPopulation', mypop,'MutationFcn', {@mutationuniform, 0.01});
+output = ga(@funkcja,3,A,b,[],[],[0;0;0],[400;400;400],[],options);
 toc
 
-%,'ParetoFraction',0.35 ,'MigrationDirection','both'
-%output = ga(@funkcja,3,[],[],[],[],[0;0;0],[200;200;200],[],options);
-%b = [200;300;10];
+
