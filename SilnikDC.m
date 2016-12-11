@@ -5,7 +5,7 @@ K = 0.01;
 R = 1;
 L = 0.5;
 %===PARAMATRY PID
-Kp = output(1);
-Ki = output(2);
-Kd = output(3);
+ Kp = output(1);
+ Ki = output(3);
+ Kd = output(2);
 %===ALGORYTM GENETYCZNY=====%
